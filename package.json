@@ -1,0 +1,19 @@
+{
+  "name": "waf-2021",
+  "version": "1.0.0",
+  "description": "Webes alkalmazások fejlesztése 2021 projektfeladat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Balint197/WAF-2021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Balint197/WAF-2021/issues"
+  },
+  "homepage": "https://github.com/Balint197/WAF-2021#readme"
+}
