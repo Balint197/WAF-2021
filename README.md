@@ -7,4 +7,5 @@ Create test cases for validation. Make it documented. Use unified modeling langu
 ____________________________________________________
 
 Telepítés: 
-npm install
+
+`npm install`

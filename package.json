@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Balint197/WAF-2021#readme",
   "dependencies": {
-    "ejs": "^3.1.6"
+    "bootstrap-icons": "^1.5.0",
+    "ejs": "^3.1.6",
+    "ejs-mate": "^3.0.0"
   }
 }

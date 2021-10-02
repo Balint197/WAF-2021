@@ -11,140 +11,254 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark navbar-nav-scroll bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Labor foglaló</a>
+            <a class="navbar-brand" href="#">Labor foglaló
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-calendar2-range ms-2" viewBox="0 0 16 16">
+                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                    <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4zM9 8a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zm-8 2h4a1 1 0 1 1 0 2H1v-2z"/>
+                  </svg>
+                <!-- <img src="images/calendar_white.png" class="ms-2" width="30" alt=""> -->
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.html">Foglalás</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="#edit">Foglalás szerkesztése</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
+
                 </ul>
-                <form class="d-flex">
-                    <button class="btn btn-outline-success me-3" type="submit" id="register">Regisztráció</button>
-                    <button class="btn btn-outline-success" type="submit" id="login">Bejelentkezés</button>
-                </form>
+                <a class="btn btn-outline-light me-3" href="/register.html" role="button">Regisztráció</a>
+                <a class="btn btn-outline-light" href="/login.html" role="button">Bejelentkezés</a>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-5">
-        <table class="table ">
-            <thead>
-                <tr>
-                    <th scope="col">Időpont</th>
-                    <th scope="col">Hétfő</th>
-                    <th scope="col">Kedd</th>
-                    <th scope="col">Szerda</th>
-                    <th scope="col">Csütörtök</th>
-                    <th scope="col">Péntek</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">8-10</th>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                    <td class="table-danger">foglalt</td>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">10-12</th>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                    <td class="table-danger">foglalt</td>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">12-14</th>
-                    <td class="table-danger">foglalt</td>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">14-16</th>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                    <td class="table-danger">foglalt</td>
-                </tr>
-                <tr>
-                    <th scope="row">16-18</th>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                    <td class="table-danger">foglalt</td>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                    <td class="table-success">szabad
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-secondary">+</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <h1 class="mt-5 mb-4">Időpontfoglaló táblázat</h1>
+                <table width="100%" class="table text-center table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col" width="5%">Időpont</th>
+                            <th scope="col" width="19%">Hétfő</th>
+                            <th scope="col" width="19%">Kedd</th>
+                            <th scope="col" width="19%">Szerda</th>
+                            <th scope="col" width="19%">Csütörtök</th>
+                            <th scope="col" width="19%">Péntek</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">8-10</th>
+                            <td class="table-success">szabad
+                                <!-- <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button> -->
+
+                                <!-- Button trigger modal -->
+                                <span data-bs-toggle="modal" data-bs-target="#foglaloModal">
+                        <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Foglalás">+</button>
+                    </span>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="foglaloModal" tabindex="-1" aria-labelledby="foglaloModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="foglaloModalLabel">Időpont foglalása</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Biztos, hogy le akarod foglalni a labort ... napon ... órakor?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégse</button>
+                                                <button type="button" class="btn btn-success">Foglalás</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </td>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                            <td class="table-danger">foglalt</td>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">10-12</th>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                            <td class="table-danger">foglalt</td>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">12-14</th>
+                            <td class="table-danger">foglalt</td>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+
+                            <td class="table-warning">általad foglalt
+                                <!-- Button trigger modal -->
+                                <span data-bs-toggle="modal" data-bs-target="#torloModal">
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Törlés">&times</button>
+                            </span>
+
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="torloModal" tabindex="-1" aria-labelledby="torloModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="torloModalLabel">Időpont törlése</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Biztos, hogy törölni akarod foglalásod a ... napon ... órai időpontból?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégse</button>
+                                                <button type="button" class="btn btn-danger">Törlés</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">14-16</th>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                            <td class="table-danger">foglalt</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">16-18</th>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                            <td class="table-danger">foglalt</td>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                            <td class="table-success">szabad
+                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>Szabályok ismertetése.... Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque earum exercitationem debitis maxime commodi natus ullam alias provident modi consectetur facere, eum sed asperiores. Eos porro quibusdam id dolores
+                    doloribus. Corrupti, at! Odit, recusandae culpa. Accusantium magnam temporibus incidunt? Ullam nemo harum itaque. Delectus, modi vero nostrum harum iste quam, repellendus voluptate assumenda officia, molestiae recusandae atque quasi
+                    voluptatibus doloribus? Aliquam incidunt repellendus id, officia nostrum harum qui molestias doloremque consectetur, ipsam totam deleniti dolor exercitationem eos magni! Dolorum earum itaque deleniti vitae repellendus velit recusandae,
+                    maxime autem sit nemo. Molestias, vero alias? Tempora reprehenderit ullam quidem cum. Velit facilis ratione sapiente! Rerum laboriosam veniam nostrum amet ratione hic placeat tempora deleniti repellendus cumque voluptas, sed ex enim
+                    voluptatem fuga. Sit sed adipisci hic perspiciatis tempore impedit amet quis, ea quae mollitia asperiores deleniti fugiat temporibus, pariatur ad repudiandae ut nemo aliquam. Saepe quod dicta accusamus ducimus quae adipisci optio.</p>
+
+
+                <h2 id="edit" class="mb-3">Foglalt időpontjaid</h2>
+                <table class="table text-center table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col" width="10%">Foglalás száma</th>
+                            <th scope="col" width="20%">Nap</th>
+                            <th scope="col" width="20%">Időpont</th>
+                            <th scope="col" width="5%">Törlés</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Kedd</td>
+                            <td>8-10</td>
+                            <td>
+                                <button class="btn btn-small btn-outline-danger">&times</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Péntek</td>
+                            <td>12-14</td>
+                            <td>
+                                <button class="btn btn-small btn-outline-danger">&times</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Szerda</td>
+                            <td>8-10</td>
+                            <td>
+                                <button class="btn btn-small btn-outline-danger">&times</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
+
+
+
+    <footer class="py-0 my-4">
+        <p class="text-center text-muted border-top pt-3">&copy Webes alkalmazások fejlesztése 2021</p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <!-- tooltip js -->
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+
 </body>
 
 </html>
