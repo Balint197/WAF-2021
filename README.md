@@ -20,6 +20,7 @@ Futtatás (nem tudom java-val ez hogy fog menni, de ha ugyanígy és csak a scri
 
 Ajánlom ezt használni sima node parancs helyett: https://www.npmjs.com/package/nodemon -> `nodemon app.js` miután telepítetted a gépedre
 
+És innen az oldal elérhető a `http://localhost:3000/` címen böngészővel.
 ____________________________________________________
 
 TODO:
