@@ -12,7 +12,7 @@ Telepítés:
 
 Futtatás:
 
-node app.js
+`node app.js`
 
 Nem tudom java-val ez hogy fog menni, de ha ugyanígy és csak a scripteket változtatjuk:
 
@@ -22,4 +22,4 @@ ____________________________________________________
 
 TODO:
 
-flash ha lefoglalta
+flash ha lefoglalta az időpontot, és a db-ben is ok
