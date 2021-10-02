@@ -8,4 +8,18 @@ ____________________________________________________
 
 Telepítés: 
 
-`npm install`
+`npm install` 
+
+Futtatás:
+
+node app.js
+
+Nem tudom java-val ez hogy fog menni, de ha ugyanígy és csak a scripteket változtatjuk:
+
+Ajánlom ezt használni sima node parancs helyett: https://www.npmjs.com/package/nodemon
+
+____________________________________________________
+
+TODO:
+
+flash ha lefoglalta
