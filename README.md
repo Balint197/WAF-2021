@@ -9,7 +9,9 @@ ____________________________________________________
 Telepítés: (windows-on git bash-el: https://git-scm.com/downloads)
 
 `git clone https://github.com/Balint197/WAF-2021`
+
 `cd WAF-2021`
+
 `npm install` 
 
 Futtatás (nem tudom java-val ez hogy fog menni, de ha ugyanígy és csak a scripteket változtatjuk):
