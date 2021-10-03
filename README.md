@@ -7,20 +7,27 @@ Create test cases for validation. Make it documented. Use unified modeling langu
 
 ____________________________________________________
 
-Telepítés: 
+Telepítés: (windows-on git bash-el: https://git-scm.com/downloads)
+
+`git clone https://github.com/Balint197/WAF-2021`
+
+`cd WAF-2021`
 
 `npm install` 
 
-Futtatás:
+Futtatás (nem tudom java-val ez hogy fog menni, de ha ugyanígy és csak a scripteket változtatjuk):
 
 `node app.js`
 
-Nem tudom java-val ez hogy fog menni, de ha ugyanígy és csak a scripteket változtatjuk:
+Ajánlom ezt használni sima node parancs helyett: https://www.npmjs.com/package/nodemon -> `nodemon app.js` miután telepítetted a gépedre
 
-Ajánlom ezt használni sima node parancs helyett: https://www.npmjs.com/package/nodemon
-
+És innen az oldal elérhető a `http://localhost:3000/` címen böngészővel.
 ____________________________________________________
 
 TODO:
 
-flash ha lefoglalta az időpontot, és a db-ben is ok
+* szerver
+* adatbázis
+* flash ha lefoglalta az időpontot, és a db-ben is ok
+* frontend szépítgetés
+* további ötletek ha marad idő...
