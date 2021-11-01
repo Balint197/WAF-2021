@@ -20,8 +20,13 @@
                 </li>
 
             </ul>
+            <% if(!isAuthenticated){ %>
             <a class="btn btn-outline-light me-3" href="/register" role="button">Regisztráció</a>
             <a class="btn btn-outline-light" href="/login" role="button">Bejelentkezés</a>
+            <% } else{ %>
+            <a class="btn btn-outline-light" href="/profile" role="button">Profil</a>
+            <a class="btn btn-outline-light" href="/logout" role="button">Kijelentkezés</a>
+            <% } %>
         </div>
     </div>
 </nav>
