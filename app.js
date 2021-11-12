@@ -62,7 +62,7 @@ passport.use(new LocalStrategy(
             const search_query = mysql.format(sqlSearch, [username])
             await connection.query(search_query, async (err, result) => {
                 connection.release()
-
+                console.log("Connection release")
                 if (err) throw (err)
                 if (result.length == 0) {
                     console.log("--------> User does not exist")
