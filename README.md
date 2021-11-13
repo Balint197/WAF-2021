@@ -15,6 +15,8 @@ Telepítés: (windows-on git bash-el: https://git-scm.com/downloads)
 
 `npm install` 
 
+DB: mySQL Workbench -> Server -> Data import -> nyisd meg az `sql` mappában levő dolgokat
+
 Futtatás (nem tudom java-val ez hogy fog menni, de ha ugyanígy és csak a scripteket változtatjuk):
 
 `node app.js`
@@ -22,12 +24,28 @@ Futtatás (nem tudom java-val ez hogy fog menni, de ha ugyanígy és csak a scri
 Ajánlom ezt használni sima node parancs helyett: https://www.npmjs.com/package/nodemon -> `nodemon app.js` miután telepítetted a gépedre
 
 És innen az oldal elérhető a `http://localhost:3000/` címen böngészővel.
+
+Belépés ha nem akarsz új felhasználót (lehet jobb így, mert talán könnyebb a teszttáblával, de nyilván lehet saját): user: balint pw: JZjTJGC4KGDUEes
+
+
 ____________________________________________________
 
 TODO:
 
-* szerver
 * adatbázis
+* dőlt betűs rész (tesztek, UML, dok)
+
+HA UNATKOZUNK:
+
 * flash ha lefoglalta az időpontot, és a db-ben is ok
 * frontend szépítgetés
 * további ötletek ha marad idő...
+
+____________________________________________________
+
+Jegyzet:
+
+* Bootstrap + EJS templating frontend
+* mySQL
+* nodejs
+* express server
