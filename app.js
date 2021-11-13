@@ -114,7 +114,7 @@ app.listen(port, () => {
 
 app.get('/', (req, res) => {
     console.log(req.user);
-    console.log(req.isAuthenticated())
+    console.log("aut: " + req.isAuthenticated())
     db.getConnection(async(err, connection) => {
         if (err) throw (err)
         const sqlSearch = "SELECT * FROM userdb.timetable  ORDER BY idtimetable"
@@ -122,15 +122,40 @@ app.get('/', (req, res) => {
         await connection.query(sqlSearch, async(err, result) => {
             connection.release()
             const timetabledata = result
-
-            //console.log(result)
+            
             //console.log(timetabledata[24].userid)
+            if (req.isAuthenticated()) {
+            }
+                else {
+                loggedInUserid = 0
+            }
             console.log(loggedInUserid)
             res.render('home', { timetabledata: timetabledata, loggedInUserid: loggedInUserid });
         })
     })
 
 });
+app.post("/", (req, res) => {
+    console.log("foglaloember: " +loggedInUserid);
+    const foglaloID = req.body.foglaloID;
+    console.log("foglalniakar: " +foglaloID);
+    db.getConnection(async(err, connection) => {
+        if (err) throw (err)
+
+        //UPDATE `userdb`.`timetable` SET `userid` = '3' WHERE (`idtimetable` = '6');
+        const sqlSearch = "UPDATE userdb.timetable SET userid = ? WHERE (idtimetable = ?);"
+        const search_query = mysql.format(sqlSearch, [loggedInUserid,foglaloID])
+        console.log("--------> Foglalás készül")
+
+        await connection.query(search_query, async(err, result) => {
+                if (err) throw (err)
+                console.log("------> Foglalás kész")
+                console.log(result.length)
+                connection.release()
+            }) //end of connection.query()
+    }) //end of db.getConnection()
+}) //end of app.post()
+
 
 app.get('/register', (req, res) => {
     res.render('register', {
@@ -234,6 +259,7 @@ app.post(
                                 if (err) throw (err)
                                 console.log("------> Search Results")
                                 console.log(result.length)
+                                console.log(result)
 
                                 if (result.length != 0) {
                                     connection.release()
