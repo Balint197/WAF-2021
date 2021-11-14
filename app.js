@@ -81,6 +81,7 @@ passport.use(new LocalStrategy(
                                     //res.send(`${username} is logged in!`)
                             } else {
                                 console.log("---------> Password Incorrect")
+                                res.redirect('/login')
                                     //res.send("Password incorrect!")
                             } //end of bcrypt.compare()
                         } //end of User exists i.e. results.length==0
@@ -122,39 +123,40 @@ app.get('/', (req, res) => {
         await connection.query(sqlSearch, async(err, result) => {
             connection.release()
             const timetabledata = result
-            
+
             //console.log(timetabledata[24].userid)
-            if (req.isAuthenticated()) {
+            if (req.isAuthenticated()) {} else {
+                loggedInUserid = null
             }
-                else {
-                loggedInUserid = 0
-            }
-            console.log(loggedInUserid)
+            console.log("loggedInUserid: " + loggedInUserid)
             res.render('home', { timetabledata: timetabledata, loggedInUserid: loggedInUserid });
         })
     })
 
 });
 app.post("/", (req, res) => {
-    console.log("foglaloember: " +loggedInUserid);
-    const foglaloID = req.body.foglaloID;
-    console.log("foglalniakar: " +foglaloID);
-    db.getConnection(async(err, connection) => {
-        if (err) throw (err)
-
-        //UPDATE `userdb`.`timetable` SET `userid` = '3' WHERE (`idtimetable` = '6');
-        const sqlSearch = "UPDATE userdb.timetable SET userid = ? WHERE (idtimetable = ?);"
-        const search_query = mysql.format(sqlSearch, [loggedInUserid,foglaloID])
-        console.log("--------> Foglalás készül")
-
-        await connection.query(search_query, async(err, result) => {
+        console.log("foglaloember: " + loggedInUserid);
+        const foglaloID = req.body.foglaloID;
+        console.log("foglalniakar: " + foglaloID);
+        db.getConnection(async(err, connection) => {
                 if (err) throw (err)
-                console.log("------> Foglalás kész")
-                console.log(result.length)
-                connection.release()
-            }) //end of connection.query()
-    }) //end of db.getConnection()
-}) //end of app.post()
+
+                //UPDATE `userdb`.`timetable` SET `userid` = '3' WHERE (`idtimetable` = '6');
+                const sqlSearch = "UPDATE userdb.timetable SET userid = ? WHERE (idtimetable = ?);"
+                const search_query = mysql.format(sqlSearch, [loggedInUserid, foglaloID])
+                console.log("--------> Foglalás készül")
+                console.log("loggedInUserid: " + loggedInUserid)
+                console.log("foglaloID: " + foglaloID)
+
+                await connection.query(search_query, async(err, result) => {
+                        if (err) throw (err)
+                        console.log("------> Foglalás kész")
+                            //console.log(result.length)
+                        connection.release()
+                        res.redirect('/')
+                    }) //end of connection.query()
+            }) //end of db.getConnection()
+    }) //end of app.post()
 
 
 app.get('/register', (req, res) => {
@@ -171,17 +173,20 @@ app.get('/login', (req, res) => {
     res.render('login');
 });
 
-// login ha sikerül főold., ha nem: login
-app.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login'
-}));
-//
+//login ha sikerül főold., ha nem: login
+// app.post('/login', passport.authenticate('local', {
+//     successRedirect: '/',
+//     failureRedirect: '/login'
+// }));
+
+app.post('/login', passport.authenticate('local'), function(req, res) {
+    res.redirect('/');
+});
 
 app.get('/logout', (req, res) => {
     req.logout();
     req.session.destroy();
-    res.redirect('/login');
+    res.redirect('/');
 });
 
 // database felhasználók tárolására

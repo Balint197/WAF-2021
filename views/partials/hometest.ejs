@@ -5,125 +5,6 @@
             <div class="col-1"></div>
             <div class="col-10">
                 <h1 class="mt-5 mb-4">Időpontfoglaló táblázat</h1>
-
-                <table width="100%" class="table text-center table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col" width="5%">Időpont</th>
-                            <th scope="col" width="19%">Hétfő</th>
-                            <th scope="col" width="19%">Kedd</th>
-                            <th scope="col" width="19%">Szerda</th>
-                            <th scope="col" width="19%">Csütörtök</th>
-                            <th scope="col" width="19%">Péntek</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">8-10</th>
-                            <% for( let i = 0; i < 5; i++ ) { %>
-                                <% if (loggedInUserid && loggedInUserid && loggedInUserid == timetabledata[i].userid) { %>
-                                    <td class="table-warning">általad foglalt
-                                        <span data-bs-toggle="modal" data-bs-target="#torloModal">
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Törlés">&times</button>
-                            </span>
-                                    </td>
-                                    <% } else if (timetabledata[i].userid == null) {%>
-                                        <td class="table-success">szabad
-                                            <span data-bs-whatever="<%=i%>" data-bs-toggle="modal" data-bs-target="#foglaloModal">
-                                        <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Foglalás">+</button>
-                                    </span>
-                                        </td>
-                                        <% } else {%>
-                                            <td class="table-danger">foglalt</td>
-                                            <% } %>
-                                                <% } %>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">10-12</th>
-                            <% for( let i = 5; i < 10; i++ ) { %>
-                                <% if (loggedInUserid && loggedInUserid == timetabledata[i].userid) { %>
-                                    <td class="table-warning">általad foglalt
-                                        <span data-bs-toggle="modal" data-bs-target="#torloModal">
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Törlés">&times</button>
-                            </span>
-                                    </td>
-                                    <% } else if (timetabledata[i].userid == null) {%>
-                                        <td class="table-success">szabad
-                                            <span data-bs-whatever="<%=i%>" data-bs-toggle="modal" data-bs-target="#foglaloModal">
-                                        <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Foglalás">+</button>
-                                    </span>
-                                        </td>
-                                        <% } else {%>
-                                            <td class="table-danger">foglalt</td>
-                                            <% } %>
-                                                <% } %>
-                        </tr>
-                        <tr>
-                            <th scope="row">12-14</th>
-                            <% for( let i = 10; i < 15; i++ ) { %>
-                                <% if (loggedInUserid && loggedInUserid == timetabledata[i].userid) { %>
-                                    <td class="table-warning">általad foglalt
-                                        <span data-bs-toggle="modal" data-bs-target="#torloModal">
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Törlés">&times</button>
-                            </span>
-                                    </td>
-                                    <% } else if (timetabledata[i].userid == null) {%>
-                                        <td class="table-success">szabad
-                                            <span data-bs-whatever="<%=i%>" data-bs-toggle="modal" data-bs-target="#foglaloModal">
-                                        <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Foglalás">+</button>
-                                    </span>
-                                        </td>
-                                        <% } else {%>
-                                            <td class="table-danger">foglalt</td>
-                                            <% } %>
-                                                <% } %>
-                        </tr>
-                        <tr>
-                            <th scope="row">14-16</th>
-                            <% for( let i = 15; i < 20; i++ ) { %>
-                                <% if (loggedInUserid && loggedInUserid == timetabledata[i].userid) { %>
-                                    <td class="table-warning">általad foglalt
-                                        <span data-bs-toggle="modal" data-bs-target="#torloModal">
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Törlés">&times</button>
-                            </span>
-                                    </td>
-                                    <% } else if (timetabledata[i].userid == null) {%>
-                                        <td class="table-success">szabad
-                                            <span data-bs-whatever="<%=i%>" data-bs-toggle="modal" data-bs-target="#foglaloModal">
-                                        <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Foglalás">+</button>
-                                    </span>
-                                        </td>
-                                        <% } else {%>
-                                            <td class="table-danger">foglalt</td>
-                                            <% } %>
-                                                <% } %>
-                        </tr>
-                        <tr>
-                            <th scope="row">16-18</th>
-                            <% for( let i = 20; i < 25; i++ ) { %>
-                                <% if (loggedInUserid && loggedInUserid == timetabledata[i].userid) { %>
-                                    <td class="table-warning">általad foglalt
-                                        <span data-bs-toggle="modal" data-bs-target="#torloModal">
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Törlés">&times</button>
-                            </span>
-                                    </td>
-                                    <% } else if (timetabledata[i].userid == null) {%>
-                                        <td class="table-success">szabad
-                                            <span data-bs-whatever="<%=i%>" data-bs-toggle="modal" data-bs-target="#foglaloModal">
-                                        <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Foglalás">+</button>
-                                    </span>
-                                        </td>
-                                        <% } else {%>
-                                            <td class="table-danger">foglalt</td>
-                                            <% } %>
-                                                <% } %>
-                        </tr>
-                    </tbody>
-                </table>
-
-
-                <h3>régi tábla, csak példa </h3>
                 <table width="100%" class="table text-center table-bordered">
                     <thead>
                         <tr>
@@ -139,10 +20,12 @@
                         <tr>
                             <th scope="row">8-10</th>
                             <td class="table-success">szabad
-
+                                <!-- Button trigger modal -->
                                 <span data-bs-toggle="modal" data-bs-target="#foglaloModal">
                         <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Foglalás">+</button>
                     </span>
+
+
                             </td>
                             <td class="table-success">szabad
                                 <span data-bs-toggle="modal" data-bs-target="#foglaloModal">
@@ -183,22 +66,26 @@
                             </td>
 
                             <td class="table-warning">általad foglalt
-
+                                <!-- Button trigger modal -->
                                 <span data-bs-toggle="modal" data-bs-target="#torloModal">
                                 <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Törlés">&times</button>
                             </span>
-                            </td>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
+
+                                <td class="table-success">szabad
+                                    <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                                </td>
+                                <td class="table-success">szabad
+                                    <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                                </td>
                         </tr>
                         <tr>
                             <th scope="row">14-16</th>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button type="button" class="btn btn-danger">eszköz1</button>
+                                    <button type="button" class="btn btn-warning">eszköz2</button>
+                                    <button type="button" class="btn btn-success">eszköz3</button>
+                                </div>
                             </td>
                             <td class="table-success">szabad
                                 <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
@@ -253,7 +140,7 @@
                             <td>Kedd</td>
                             <td>8-10</td>
                             <td>
-
+                                <!-- Button trigger modal -->
                                 <span data-bs-toggle="modal" data-bs-target="#torloModal">
                                                                     <button type="button" class="btn btn-small btn-outline-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Törlés">&times</button>
                                                                 </span>
@@ -264,7 +151,7 @@
                             <td>Péntek</td>
                             <td>12-14</td>
                             <td>
-
+                                <!-- Button trigger modal -->
                                 <span data-bs-toggle="modal" data-bs-target="#torloModal">
                                     <button type="button" class="btn btn-small btn-outline-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Törlés">&times</button>
                                 </span>
@@ -275,7 +162,7 @@
                             <td>Szerda</td>
                             <td>8-10</td>
                             <td>
-
+                                <!-- Button trigger modal -->
                                 <span data-bs-toggle="modal" data-bs-target="#torloModal">
                                     <button type="button" class="btn btn-small btn-outline-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Törlés">&times</button>
                                 </span>
