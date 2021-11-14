@@ -36,13 +36,14 @@ TODO:
 * ~~törlés~~
 * rossz jelszó login error (és belép)
 * regisztráció után egyből foglalás esetén error, de ha ki-belépünk akkor jó
-* modal confirmation ... text kitöltés
+* ~~modal confirmation ... text kitöltés~~
 * dőlt betűs rész (tesztek, UML, dok)
 * ~~login után rá kell frissíteni a `/` oldalra, mert anélkül úgy látszódik a tábla, mintha kilépve lennénk~~
 
-HA UNATKOZUNK:
+HA UNATKOZUNK/ÖTLETEK:
 
 * flash ha lefoglalta az időpontot, és a db-ben is ok
+* (más által) foglalt cella alsó részén felhasználó kiírása, hogy cserélgetni lehessen
 * frontend szépítgetés
 * további ötletek ha marad idő...
 

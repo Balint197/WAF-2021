@@ -26,8 +26,8 @@
     </div>
 </div>
 <script>
-    var exampleModal = document.getElementById('foglaloModal')
-    exampleModal.addEventListener('show.bs.modal', function(event) {
+    var foglaloModal = document.getElementById('foglaloModal')
+    foglaloModal.addEventListener('show.bs.modal', function(event) {
         console.log(event)
             // Button that triggered the modal
         var button = event.relatedTarget
@@ -37,11 +37,21 @@
             // and then do the updating in a callback.
             //
             // Update the modal's content.
-            /* var modalTitle = exampleModal.querySelector('.modal-title')
-            var modalBodyInput = exampleModal.querySelector('.modal-body input')
+            //      var modalTitle = foglaloModal.querySelector('.modal-title')
+            //        var modalBodyInput = foglaloModal.querySelector('.modal-body input')
 
-            modalTitle.textContent = 'New message to ' + recipient
-            modalBodyInput.value = recipient */
+        //        modalTitle.textContent = 'New message to ' + recipient
+        //        modalBodyInput.value = recipient
+
+        //var modalBody = foglaloModal.querySelector('.modal-body')
+        //var modalBody = foglaloModal.getElementById('modal-body')
+
+        var days = ["Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek"]
+        var day = days[recipient % 5]
+        var time = 8 + Math.floor(recipient / 5) * 2 + "-" + (10 + Math.floor(recipient / 5) * 2)
+        var modalBody = foglaloModal.querySelector('.modal-body')
+        modalBody.innerHTML = 'Biztos, hogy le akarod foglalni a labort a <span class="badge rounded-pill  bg-success">' + day + '</span> napon <span class="badge rounded-pill  bg-success">' + time + '</span> óra között?'
+
         var foglaloID = document.getElementById('foglaloID')
         foglaloID.setAttribute("value", recipient)
     })

@@ -19,7 +19,6 @@
         </div>
     </div>
 </div>
-</td>
 
 <script>
     var exampleModal = document.getElementById('torloModal')
@@ -38,6 +37,11 @@
 
             modalTitle.textContent = 'New message to ' + recipient
             modalBodyInput.value = recipient */
+        var days = ["Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek"]
+        var day = days[recipient % 5]
+        var time = 8 + Math.floor(recipient / 5) * 2 + "-" + (10 + Math.floor(recipient / 5) * 2)
+        var modalBody = exampleModal.querySelector('.modal-body')
+        modalBody.innerHTML = 'Biztos, hogy törölni akarod foglalásod a <span class="badge rounded-pill  bg-danger">' + day + '</span> napon <span class="badge rounded-pill  bg-danger">' + time + '</span> órai időpontból?'
         var torloID = document.getElementById('torloID')
         torloID.setAttribute("value", recipient)
     })
