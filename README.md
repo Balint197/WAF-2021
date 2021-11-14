@@ -34,11 +34,11 @@ TODO:
 
 * adatbázis
 * törlés
-* login után rá kell frissíteni a `/` oldalra, mert anélkül úgy látszódik a tábla, mintha kilépve lennénk
-* rossz jelszó login error
+* rossz jelszó login error (és belép)
 * regisztráció után foglalás error, de ha ki-belépünk akkor jó
 * modal confirmation ... text kitöltés
 * dőlt betűs rész (tesztek, UML, dok)
+* ~~login után rá kell frissíteni a `/` oldalra, mert anélkül úgy látszódik a tábla, mintha kilépve lennénk~~
 
 HA UNATKOZUNK:
 

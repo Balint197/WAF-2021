@@ -73,11 +73,11 @@ passport.use(new LocalStrategy(
                         } else {
                             const hashedPassword = result[0].password
                                 //get the hashedPassword from result
+                            loggedInUserid = result[0].userid //username
+                            console.log("userid: " + loggedInUserid)
+                            console.log("username: " + username)
                             if (await bcrypt.compare(password, hashedPassword)) {
                                 console.log("---------> Login Successful")
-                                loggedInUserid = result[0].userid //username
-                                console.log("userid: " + loggedInUserid)
-                                console.log("username: " + username)
                                     //res.send(`${username} is logged in!`)
                             } else {
                                 console.log("---------> Password Incorrect")
@@ -114,20 +114,22 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-    console.log(req.user);
+    console.log("req.user: " + req.user);
     console.log("aut: " + req.isAuthenticated())
     db.getConnection(async(err, connection) => {
         if (err) throw (err)
+            //console.log(timetabledata[24].userid)
+        if (req.isAuthenticated()) {
+            console.log("authenticated: " + loggedInUserid)
+        } else {
+            loggedInUserid = null
+        }
         const sqlSearch = "SELECT * FROM userdb.timetable  ORDER BY idtimetable"
             //const search_query = mysql.format(sqlSearch, [username])
         await connection.query(sqlSearch, async(err, result) => {
             connection.release()
             const timetabledata = result
 
-            //console.log(timetabledata[24].userid)
-            if (req.isAuthenticated()) {} else {
-                loggedInUserid = null
-            }
             console.log("loggedInUserid: " + loggedInUserid)
             res.render('home', { timetabledata: timetabledata, loggedInUserid: loggedInUserid });
         })
@@ -174,14 +176,11 @@ app.get('/login', (req, res) => {
 });
 
 //login ha sikerül főold., ha nem: login
-// app.post('/login', passport.authenticate('local', {
-//     successRedirect: '/',
-//     failureRedirect: '/login'
-// }));
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+}));
 
-app.post('/login', passport.authenticate('local'), function(req, res) {
-    res.redirect('/');
-});
 
 app.get('/logout', (req, res) => {
     req.logout();
