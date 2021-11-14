@@ -136,7 +136,7 @@ app.get('/', (req, res) => {
     })
 
 });
-app.post("/", (req, res) => {
+app.post("/foglalas", (req, res) => {
         console.log("foglaloember: " + loggedInUserid);
         const foglaloID = req.body.foglaloID;
         console.log("foglalniakar: " + foglaloID);
@@ -153,6 +153,31 @@ app.post("/", (req, res) => {
                 await connection.query(search_query, async(err, result) => {
                         if (err) throw (err)
                         console.log("------> Foglalás kész")
+                            //console.log(result.length)
+                        connection.release()
+                        res.redirect('/')
+                    }) //end of connection.query()
+            }) //end of db.getConnection()
+    }) //end of app.post()
+
+
+app.post("/torles", (req, res) => {
+        console.log("torloember: " + loggedInUserid);
+        const torloID = req.body.torloID;
+        console.log("torolniakar: " + torloID);
+        db.getConnection(async(err, connection) => {
+                if (err) throw (err)
+
+                //UPDATE `userdb`.`timetable` SET `userid` = '3' WHERE (`idtimetable` = '6');
+                const sqlSearch = "UPDATE userdb.timetable SET userid = NULL WHERE (idtimetable = ?);"
+                const search_query = mysql.format(sqlSearch, [torloID])
+                console.log("--------> Törlés készül")
+                console.log("loggedInUserid: " + loggedInUserid)
+                console.log("foglaloID: " + torloID)
+
+                await connection.query(search_query, async(err, result) => {
+                        if (err) throw (err)
+                        console.log("------> Törlés kész")
                             //console.log(result.length)
                         connection.release()
                         res.redirect('/')

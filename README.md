@@ -32,10 +32,10 @@ ____________________________________________________
 
 TODO:
 
-* adatbázis
-* törlés
+* ~~adatbázis~~
+* ~~törlés~~
 * rossz jelszó login error (és belép)
-* regisztráció után foglalás error, de ha ki-belépünk akkor jó
+* regisztráció után egyből foglalás esetén error, de ha ki-belépünk akkor jó
 * modal confirmation ... text kitöltés
 * dőlt betűs rész (tesztek, UML, dok)
 * ~~login után rá kell frissíteni a `/` oldalra, mert anélkül úgy látszódik a tábla, mintha kilépve lennénk~~

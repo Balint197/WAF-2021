@@ -23,7 +23,7 @@
                             <% for( let i = 0; i < 5; i++ ) { %>
                                 <% if (loggedInUserid && loggedInUserid && loggedInUserid == timetabledata[i].userid) { %>
                                     <td class="table-warning">általad foglalt
-                                        <span data-bs-toggle="modal" data-bs-target="#torloModal">
+                                        <span data-bs-whatever="<%=i%>" data-bs-toggle="modal" data-bs-target="#torloModal">
                                 <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Törlés">&times</button>
                             </span>
                                     </td>
@@ -44,7 +44,7 @@
                             <% for( let i = 5; i < 10; i++ ) { %>
                                 <% if (loggedInUserid && loggedInUserid == timetabledata[i].userid) { %>
                                     <td class="table-warning">általad foglalt
-                                        <span data-bs-toggle="modal" data-bs-target="#torloModal">
+                                        <span data-bs-whatever="<%=i%>" data-bs-toggle="modal" data-bs-target="#torloModal">
                                 <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Törlés">&times</button>
                             </span>
                                     </td>
@@ -64,7 +64,7 @@
                             <% for( let i = 10; i < 15; i++ ) { %>
                                 <% if (loggedInUserid && loggedInUserid == timetabledata[i].userid) { %>
                                     <td class="table-warning">általad foglalt
-                                        <span data-bs-toggle="modal" data-bs-target="#torloModal">
+                                        <span data-bs-whatever="<%=i%>" data-bs-toggle="modal" data-bs-target="#torloModal">
                                 <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Törlés">&times</button>
                             </span>
                                     </td>
@@ -84,7 +84,7 @@
                             <% for( let i = 15; i < 20; i++ ) { %>
                                 <% if (loggedInUserid && loggedInUserid == timetabledata[i].userid) { %>
                                     <td class="table-warning">általad foglalt
-                                        <span data-bs-toggle="modal" data-bs-target="#torloModal">
+                                        <span data-bs-whatever="<%=i%>" data-bs-toggle="modal" data-bs-target="#torloModal">
                                 <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Törlés">&times</button>
                             </span>
                                     </td>
@@ -104,7 +104,7 @@
                             <% for( let i = 20; i < 25; i++ ) { %>
                                 <% if (loggedInUserid && loggedInUserid == timetabledata[i].userid) { %>
                                     <td class="table-warning">általad foglalt
-                                        <span data-bs-toggle="modal" data-bs-target="#torloModal">
+                                        <span data-bs-whatever="<%=i%>" data-bs-toggle="modal" data-bs-target="#torloModal">
                                 <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Törlés">&times</button>
                             </span>
                                     </td>
@@ -123,113 +123,6 @@
                 </table>
 
 
-                <h3>régi tábla, csak példa </h3>
-                <table width="100%" class="table text-center table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col" width="5%">Időpont</th>
-                            <th scope="col" width="19%">Hétfő</th>
-                            <th scope="col" width="19%">Kedd</th>
-                            <th scope="col" width="19%">Szerda</th>
-                            <th scope="col" width="19%">Csütörtök</th>
-                            <th scope="col" width="19%">Péntek</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">8-10</th>
-                            <td class="table-success">szabad
-
-                                <span data-bs-toggle="modal" data-bs-target="#foglaloModal">
-                        <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Foglalás">+</button>
-                    </span>
-                            </td>
-                            <td class="table-success">szabad
-                                <span data-bs-toggle="modal" data-bs-target="#foglaloModal">
-                                    <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Foglalás">+</button>
-                                </span>
-
-
-                            </td>
-                            <td class="table-danger">foglalt</td>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">10-12</th>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                            <td class="table-danger">foglalt</td>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">12-14</th>
-                            <td class="table-danger">foglalt</td>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-
-                            <td class="table-warning">általad foglalt
-
-                                <span data-bs-toggle="modal" data-bs-target="#torloModal">
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Törlés">&times</button>
-                            </span>
-                            </td>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">14-16</th>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                            <td class="table-danger">foglalt</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">16-18</th>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                            <td class="table-danger">foglalt</td>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                            <td class="table-success">szabad
-                                <button type="button" class="ms-2 btn btn-sm btn-outline-dark">+</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
                 <p>Szabályok ismertetése.... Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque earum exercitationem debitis maxime commodi natus ullam alias provident modi consectetur facere, eum sed asperiores. Eos porro quibusdam id dolores
                     doloribus. Corrupti, at! Odit, recusandae culpa. Accusantium magnam temporibus incidunt? Ullam nemo harum itaque. Delectus, modi vero nostrum harum iste quam, repellendus voluptate assumenda officia, molestiae recusandae atque quasi
                     voluptatibus doloribus? Aliquam incidunt repellendus id, officia nostrum harum qui molestias doloremque consectetur, ipsam totam deleniti dolor exercitationem eos magni! Dolorum earum itaque deleniti vitae repellendus velit recusandae,
@@ -238,6 +131,7 @@
 
 
                 <h2 id="edit" class="mb-3">Foglalt időpontjaid</h2>
+                <h4 id="edit" class="mb-3">Átrakni profilhoz adat edit helyett ha egyáltalán meg akarjuk tartani?</h4>
                 <table class="table text-center table-bordered">
                     <thead>
                         <tr>
