@@ -304,7 +304,7 @@ app.post(
                                         const user_id = result.insertId;
                                         // sikeres regisztráció után belépés
                                         req.login(user_id, function(err) {
-                                            res.redirect('/');
+                                            res.redirect('/logout');
                                         });
                                         //res.sendStatus(201)
                                         //res.redirect('/login');
