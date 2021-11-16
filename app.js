@@ -69,6 +69,7 @@ passport.use(new LocalStrategy(
                         if (err) throw (err)
                         if (result.length == 0) {
                             console.log("--------> User does not exist")
+                            return done(null, false);
                                 //res.sendStatus(404)
                         } else {
                             const hashedPassword = result[0].password
@@ -78,19 +79,19 @@ passport.use(new LocalStrategy(
                             console.log("username: " + username)
                             if (await bcrypt.compare(password, hashedPassword)) {
                                 console.log("---------> Login Successful")
+                                return done(null, 'username');
                                     //res.send(`${username} is logged in!`)
                             } else {
                                 console.log("---------> Password Incorrect")
                                 res.redirect('/login')
+                                return done(null, 'username');
                                     //res.send("Password incorrect!")
                             } //end of bcrypt.compare()
                         } //end of User exists i.e. results.length==0
                     }) //end of connection.query()
             }) //end of db.connection()
-        return done(null, 'username');
     }
 ));
-//
 
 app.use(function(req, res, next) {
     res.locals.isAuthenticated = req.isAuthenticated();
