@@ -34,8 +34,9 @@ TODO:
 
 * ~~adatbázis~~
 * ~~törlés~~
-* ~~rossz jelszó login error (és belép)
-*esetleg azt még kiírhatná az oldalra hogy rossz jelszó vagy felhasználónév, próbálkozz újra
+* ~~rossz jelszó login error (és belép)~~
+* esetleg azt még kiírhatná az oldalra hogy rossz jelszó vagy felhasználónév, próbálkozz újra (flash-el)
+* regisztrációnál pattern (05 előadás, 31. oldal) (könnyű, csak most másik gépről vagyok...)
 * ~~regisztráció után egyből foglalás esetén error, de ha ki-belépünk akkor jó (nem fut le az autentikáció, így nincs meg a userid) -> jelenlegi megoldás: redirect to /logout, szóval be kell lépni (csúnya?)~~
 * ~~modal confirmation ... text kitöltés~~
 * dőlt betűs rész (tesztek, UML, dok)
