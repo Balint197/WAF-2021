@@ -1,23 +1,23 @@
+// DEPENDENCIES
 const express = require('express'),
     engine = require('ejs-mate'),
     bodyParser = require('body-parser'),
     { body, validationResult } = require('express-validator'),
     session = require('express-session'),
     passport = require('passport'),
+    bcrypt = require("bcrypt"),
     LocalStrategy = require('passport-local').Strategy,
     MySQLStore = require('express-mysql-session')(session),
     app = express(),
-    //getTimeTable = require('./getTimeTable'),
+    mysql = require("mysql"),
     ejs = require('ejs');
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// EJS TEMPLATING ENGINE INIT
 app.engine('ejs', engine);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs'); // so you can render('index')
-
-// ez nem tudom mit csinal pontosan
-app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(expressValidator());
-
 
 //.env fájlból database adatok
 require("dotenv").config()
@@ -48,6 +48,7 @@ app.use(session({
     //cookie: { secure: true }
 }))
 
+// PASSPORT BEÁLLÍTÁSA
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -70,7 +71,7 @@ passport.use(new LocalStrategy(
                         if (result.length == 0) {
                             console.log("--------> User does not exist")
                             return done(null, false);
-                                //res.sendStatus(404)
+                            //res.sendStatus(404)
                         } else {
                             const hashedPassword = result[0].password
                                 //get the hashedPassword from result
@@ -80,12 +81,12 @@ passport.use(new LocalStrategy(
                             if (await bcrypt.compare(password, hashedPassword)) {
                                 console.log("---------> Login Successful")
                                 return done(null, 'username');
-                                    //res.send(`${username} is logged in!`)
+                                //res.send(`${username} is logged in!`)
                             } else {
                                 console.log("---------> Password Incorrect")
                                 res.redirect('/login')
                                 return done(null, 'username');
-                                    //res.send("Password incorrect!")
+                                //res.send("Password incorrect!")
                             } //end of bcrypt.compare()
                         } //end of User exists i.e. results.length==0
                     }) //end of connection.query()
@@ -108,31 +109,29 @@ function authenticationMiddleware() {
     }
 }
 
-
+// SZERVER BEÁLLÍTÁS
 const port = 3000;
 app.listen(port, () => {
     console.log(`Serving on port ${port}`);
 });
 
+// GET ÉS POST REQUESTEK
 app.get('/', (req, res) => {
     console.log("req.user: " + req.user);
     console.log("aut: " + req.isAuthenticated())
-    db.getConnection(async(err, connection) => {
+    db.getConnection(async(err, connection) => { // csatéakozás a db-hez
         if (err) throw (err)
-            //console.log(timetabledata[24].userid)
-        if (req.isAuthenticated()) {
+        if (req.isAuthenticated()) { // felhasználó  belépve
             console.log("authenticated: " + loggedInUserid)
         } else {
             loggedInUserid = null
         }
-        const sqlSearch = "SELECT * FROM userdb.timetable  ORDER BY idtimetable"
-            //const search_query = mysql.format(sqlSearch, [username])
-        await connection.query(sqlSearch, async(err, result) => {
-            connection.release()
-            const timetabledata = result
-
+        const sqlSearch = "SELECT * FROM userdb.timetable  ORDER BY idtimetable" // SQL query string
+        await connection.query(sqlSearch, async(err, result) => { // SQL string parancs futtatása a db-ben
+            connection.release() // db kapcsolat bontása
+            const timetabledata = result // lekérdezés eredménye tárolva
             console.log("loggedInUserid: " + loggedInUserid)
-            res.render('home', { timetabledata: timetabledata, loggedInUserid: loggedInUserid });
+            res.render('home', { timetabledata: timetabledata, loggedInUserid: loggedInUserid }); // átirányítás, a lekérdezett adatok és userid továbbításával
         })
     })
 
@@ -143,9 +142,7 @@ app.post("/foglalas", (req, res) => {
         console.log("foglalniakar: " + foglaloID);
         db.getConnection(async(err, connection) => {
                 if (err) throw (err)
-
-                //UPDATE `userdb`.`timetable` SET `userid` = '3' WHERE (`idtimetable` = '6');
-                const sqlSearch = "UPDATE userdb.timetable SET userid = ? WHERE (idtimetable = ?);"
+                const sqlSearch = "UPDATE userdb.timetable SET userid = ? WHERE (idtimetable = ?);" // foglalás UPDATE
                 const search_query = mysql.format(sqlSearch, [loggedInUserid, foglaloID])
                 console.log("--------> Foglalás készül")
                 console.log("loggedInUserid: " + loggedInUserid)
@@ -154,7 +151,6 @@ app.post("/foglalas", (req, res) => {
                 await connection.query(search_query, async(err, result) => {
                         if (err) throw (err)
                         console.log("------> Foglalás kész")
-                            //console.log(result.length)
                         connection.release()
                         res.redirect('/')
                     }) //end of connection.query()
@@ -168,9 +164,7 @@ app.post("/torles", (req, res) => {
         console.log("torolniakar: " + torloID);
         db.getConnection(async(err, connection) => {
                 if (err) throw (err)
-
-                //UPDATE `userdb`.`timetable` SET `userid` = '3' WHERE (`idtimetable` = '6');
-                const sqlSearch = "UPDATE userdb.timetable SET userid = NULL WHERE (idtimetable = ?);"
+                const sqlSearch = "UPDATE userdb.timetable SET userid = NULL WHERE (idtimetable = ?);" // UPDATE, mert NULL-ra állítjuk a tulajdonost, de nem töröljük az időpontot
                 const search_query = mysql.format(sqlSearch, [torloID])
                 console.log("--------> Törlés készül")
                 console.log("loggedInUserid: " + loggedInUserid)
@@ -179,7 +173,6 @@ app.post("/torles", (req, res) => {
                 await connection.query(search_query, async(err, result) => {
                         if (err) throw (err)
                         console.log("------> Törlés kész")
-                            //console.log(result.length)
                         connection.release()
                         res.redirect('/')
                     }) //end of connection.query()
@@ -215,8 +208,6 @@ app.get('/logout', (req, res) => {
 });
 
 // database felhasználók tárolására
-const mysql = require("mysql")
-
 const db = mysql.createPool({
     connectionLimit: 100,
     host: DB_HOST, //This is your localhost IP
@@ -229,14 +220,12 @@ const db = mysql.createPool({
 db.getConnection((err, connection) => {
     if (err) throw (err)
     console.log("DB connected successful: " + connection.threadId)
+        // @ ide kéne a db teszt?
 })
 
 
 
 // REGISTRATION (create new user)
-
-const bcrypt = require("bcrypt")
-
 app.use(express.json());
 
 //CREATE USER
@@ -247,7 +236,6 @@ app.post(
         body('email', 'Érvénytelen email cím!').isEmail(),
         body('password', 'Jelszó túl rövid!').isLength({ min: 8 }),
         body('password', 'Jelszó túl hosszú!').isLength({ max: 50 }),
-        //body('password', 'A jelszónak tartalmaznia kell legalább egy számot, egy kis- és nagybetűt és egy speciális karaktert!').matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/, "i"),
         body('password', 'A jelszónak tartalmaznia kell legalább egy számot és legalább egy kis- és nagybetűt!').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/),
         body('passwordMatch').custom((value, { req }) => {
             if (value !== req.body.password) {
@@ -256,14 +244,10 @@ app.post(
             // Indicates the success of this synchronous custom validator
             return true;
         }),
-        async(req, res) => { //function(req,res){ //async (req,res) => {
-
+        async(req, res) => {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 console.log(errors)
-                    /*res.status(400).json({
-                        errors: errors.array()
-                    }); */
                 res.render('register', {
                     errors: errors
                 });
@@ -307,8 +291,6 @@ app.post(
                                         req.login(user_id, function(err) {
                                             res.redirect('/logout');
                                         });
-                                        //res.sendStatus(201)
-                                        //res.redirect('/login');
                                     })
                                 }
                             }) //end of connection.query()
