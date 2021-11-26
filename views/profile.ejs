@@ -2,44 +2,48 @@
 
 
     <div class="container d-flex justify-content-center align-items-center mt-5">
-        <div class="row">
-            <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
-                <div class="card shadow">
-                    <img src="https://images.unsplash.com/photo-1562568068-ea24dcbf3c78?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1174&q=80" alt="" class="card-img-top" />
+        <div class="row" style="width: 100%;">
+            <div class="col-md-6 col-xl-4" style="width: 100%;">
+                <div class="card shadow w-100">
                     <div class="card-body">
                         <h3 class="card-title mb-2">Profil</h3>
                         <form action="/register" method="POST" class="validated-form" novalidate>
 
-                            <div class="form-floating mb-3">
-                                <input type="username" name="username" id="username" class="form-control" placeholder="username" required>
-                                <label for="username">Felhasználónév</label>
+                            <div class="form-group row">
+                                <label for="staticUser" class="col-sm-3 col-form-label">Felhasználónév:</label>
+                                <div class="col-sm-9">
+                                  <input type="text" readonly class="form-control-plaintext" id="staticUser" value="username">
+                                </div>
                             </div>
 
-                            <div class="form-floating mb-3">
-                                <input type="email" name="email" id="email" class="form-control" placeholder="email" required>
-                                <label for="email">Email</label>
+                            <div class="form-group row">
+                                <label for="staticFullName" class="col-sm-3 col-form-label">Teljes név:</label>
+                                <div class="col-sm-9">
+                                  <input type="text" readonly class="form-control-plaintext" id="staticFullName" value="John Doe">
+                                </div>
                             </div>
 
-                            <div class="form-floating mb-3">
-                                <input type="password" name="password" id="password" class="form-control" placeholder="password" required>
-                                <label for="password">Jelszó</label>
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label">Email:</label>
+                                <div class="col-sm-9">
+                                  <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                                </div>
                             </div>
 
-                            <div class="form-floating mb-3">
-                                <input type="text" name="lastname" id="lastname" class="form-control" placeholder="lastname" required>
-                                <label for="lastname">Vezetéknév</label>
+                            <div class="form-group row">
+                                <label for="staticPassword" class="col-sm-3 col-form-label">Jelszó:</label>
+                                <div class="col-sm-9">
+                                  <input type="text" readonly class="form-control-plaintext" id="staticPassword" value="********">
+                                </div>
                             </div>
 
-                            <div class="form-floating mb-3">
-                                <input type="text" name="firstname" id="firstname" class="form-control" placeholder="firstname" required>
-                                <label for="firstname">Keresztnév</label>
-                            </div>
-
-                            <div class="d-grid gap-2">
-                                <button class="btn btn-success" type="submit">Regisztráció</button>   <!--type button or submit?-->
+                            <div class="d-grid gap-2" style="
+                            width: 20%;
+                            margin-top: 2em;
+                            ">
+                                <button class="btn btn-success" type="submit">Módosítás</button>   <!--type button or submit?-->
                             </div>
                         </form>
-                        <p >Már regisztráltál? <a href="/login">Bejelentkezés</a></p>
                     </div>
                 </div>
             </div>
