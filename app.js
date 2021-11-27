@@ -213,7 +213,8 @@ app.get('/profile', authenticationMiddleware(), (req, res) => {
                     firstname: firstname,
                     lastname: lastname, 
                     fullname: fullname,
-                    email: email
+                    email: email,
+                    modDone: req.flash('modDone')
                 });
             }) //end of connection.query()
     }) //end of db.getConnection()
@@ -325,6 +326,7 @@ async(req, res) => {
                     await connection.query(update_query, async (err, result) => {
                         if (err) throw (err)
                         console.log("------> Data Updated")
+                        req.flash('modDone','Sikeres módosítás!')
                         res.redirect('/profile');
                     })
                 } 
