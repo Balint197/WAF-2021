@@ -10,9 +10,11 @@ const express = require('express'),
     MySQLStore = require('express-mysql-session')(session),
     app = express(),
     mysql = require("mysql"),
+    flash = require('connect-flash'),
     ejs = require('ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(flash());
 
 // EJS TEMPLATING ENGINE INIT
 app.engine('ejs', engine);
@@ -84,8 +86,8 @@ passport.use(new LocalStrategy(
                                 //res.send(`${username} is logged in!`)
                             } else {
                                 console.log("---------> Password Incorrect")
-                                res.redirect('/login')
-                                return done(null, 'username');
+                                //res.redirect('/login')
+                                return done(null, false);
                                 //res.send("Password incorrect!")
                             } //end of bcrypt.compare()
                         } //end of User exists i.e. results.length==0
@@ -365,14 +367,22 @@ async(req, res) => {
 
 
 app.get('/login', (req, res) => {
-    res.render('login');
+    //const failureFlash = req.flash('message')
+    res.render('login',  {
+        failureFlash: req.flash('error')
+    }, console.log(req.flash('error'))
+    );
 });
+
 
 //login ha sikerül főold., ha nem: login
 app.post('/login', passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/login'
-}));
+    failureRedirect: '/login',
+    failureFlash: 'Hibás felhasználónév vagy jelszó!'
+}, 
+)
+);
 
 
 app.get('/logout', (req, res) => {
