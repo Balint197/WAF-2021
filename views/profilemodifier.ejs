@@ -1,0 +1,93 @@
+<% layout('layouts/boilerplate') %>
+
+<% if(errors) { %>
+    <% Object.values(errors.errors).forEach(function(error){ %>
+        <div class="alert alert-danger alert-dismissible d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                    <div>
+                        <%= error.msg %>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+        </div>
+    <% }); %>
+<% } %>
+
+<% if(errMessage) { %>
+    <div class="alert alert-danger alert-dismissible d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                <div>
+                    <%= errMessage %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+    </div>
+<% } %>
+
+    <div class="container d-flex justify-content-center align-items-center mt-5">
+        <div class="row" style="width: 100%;">
+            <div class="col-md-6 col-xl-4" style="width: 100%;">
+                <div class="card shadow w-100">
+                    <div class="card-body">
+                        <h3 class="card-title mb-2">Profil adatok módosítása</h3>
+                        <form action="/modify" method="POST" class="validated-form" novalidate>
+
+                            <div class="form-group row">
+                                <label for="modUser" class="col-sm-3 col-form-label">Felhasználónév: </label>
+                                <div class="col-sm-9">
+                                  <input type="text" name="modUser" readonly class="form-control" id="modUser" value=<%= username %>>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="modLastName" class="col-sm-3 col-form-label">Vezetéknév:</label>
+                                <div class="col-sm-9">
+                                  <input type="text" name="modLastName" class="form-control" id="modLastName" value="<%= lastname %>">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="modFirstName" class="col-sm-3 col-form-label">Keresztnév:</label>
+                                <div class="col-sm-9">
+                                  <input type="text" name="modFirstName" class="form-control" id="modFirstName" value="<%= firstname %>">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="modEmail" class="col-sm-3 col-form-label">Email:</label>
+                                <div class="col-sm-9">
+                                  <input type="email" name="modEmail" class="form-control" id="modEmail" value=<%= email %>>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="modPassword" class="col-sm-3 col-form-label">Új jelszó:</label>
+                                <div class="col-sm-9">
+                                  <input type="password" name="modPassword" class="form-control" id="modPassword">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="passwordAgain" class="col-sm-3 col-form-label">Új jelszó újra:</label>
+                                <div class="col-sm-9">
+                                  <input type="password" name="passwordAgain" class="form-control" id="passwordAgain">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="oldPassword" class="col-sm-3 col-form-label">Régi jelszó:</label>
+                                <div class="col-sm-9">
+                                  <input type="password" name="oldPassword" class="form-control" id="oldPassword">
+                                </div>
+                            </div>
+
+                            <div class="d-grid gap-2" style="
+                            width: 20%;
+                            margin-top: 2em;
+                            ">
+                                <button class="btn btn-success" type="submit">Módosít</button>   <!--type button or submit?-->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

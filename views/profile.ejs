@@ -7,26 +7,26 @@
                 <div class="card shadow w-100">
                     <div class="card-body">
                         <h3 class="card-title mb-2">Profil</h3>
-                        <form action="/register" method="POST" class="validated-form" novalidate>
+                        <form action="/modifyreq" method="POST" class="validated-form" novalidate>
 
                             <div class="form-group row">
-                                <label for="staticUser" class="col-sm-3 col-form-label">Felhasználónév:</label>
+                                <label for="staticUser" class="col-sm-3 col-form-label">Felhasználónév: </label>
                                 <div class="col-sm-9">
-                                  <input type="text" readonly class="form-control-plaintext" id="staticUser" value="username">
+                                  <input type="text" readonly class="form-control-plaintext" id="staticUser" value=<%= username %>>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="staticFullName" class="col-sm-3 col-form-label">Teljes név:</label>
                                 <div class="col-sm-9">
-                                  <input type="text" readonly class="form-control-plaintext" id="staticFullName" value="John Doe">
+                                  <input type="text" readonly class="form-control-plaintext" id="staticFullName" value="<%= fullname %>">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="staticEmail" class="col-sm-3 col-form-label">Email:</label>
                                 <div class="col-sm-9">
-                                  <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                                  <input type="text" readonly class="form-control-plaintext" id="staticEmail" value=<%= email %>>
                                 </div>
                             </div>
 
