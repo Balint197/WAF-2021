@@ -30,7 +30,7 @@ TODO:
 * ~~adatbázis~~
 * ~~törlés~~
 * ~~rossz jelszó login error (és belép)~~
-* esetleg azt még kiírhatná az oldalra hogy rossz jelszó vagy felhasználónév, próbálkozz újra (flash-el)
+* ~~esetleg azt még kiírhatná az oldalra hogy rossz jelszó vagy felhasználónév, próbálkozz újra (flash-el)~~
 * regisztrációnál pattern (05 előadás, 31. oldal) (könnyű, csak most másik gépről vagyok...)
 * ~~regisztráció után egyből foglalás esetén error, de ha ki-belépünk akkor jó (nem fut le az autentikáció, így nincs meg a userid) -> jelenlegi megoldás: redirect to /logout, szóval be kell lépni (csúnya?)~~
 * ~~modal confirmation ... text kitöltés~~
@@ -39,6 +39,7 @@ TODO:
 
 HA UNATKOZUNK/ÖTLETEK:
 
+* profil oldalra áttenni/oda is berakni a lefoglalt időpontokat
 * flash ha lefoglalta az időpontot, és a db-ben is ok
 * (más által) foglalt cella alsó részén felhasználó kiírása, hogy cserélgetni lehessen
 * frontend szépítgetés
