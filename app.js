@@ -41,7 +41,7 @@ var options = {
 //session
 var sessionStore = new MySQLStore(options);
 
-// ezt a részt az isAuth. előtt kell
+// ezt a részt a passport.session előtt kell
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
@@ -82,7 +82,7 @@ passport.use(new LocalStrategy(
                             console.log("username: " + username)
                             if (await bcrypt.compare(password, hashedPassword)) {
                                 console.log("---------> Login Successful")
-                                return done(null, 'username');
+                                return done(null, loggedInUserid);
                                 //res.send(`${username} is logged in!`)
                             } else {
                                 console.log("---------> Password Incorrect")
@@ -194,9 +194,9 @@ app.get('/profile', authenticationMiddleware(), (req, res) => {
     db.getConnection(async(err, connection) => {
         if (err) throw (err)
         const sqlSearch = "SELECT * FROM userdb.users WHERE userid = ?;" // UserID alapján lekérünk mindent
-        const search_query = mysql.format(sqlSearch, [loggedInUserid])
+        const search_query = mysql.format(sqlSearch, [req.user])
         console.log("--------> Bejelentkezett user adatainak olvasása")
-        console.log("loggedInUserid: " + loggedInUserid)
+        console.log("loggedInUserid: " + req.user)
 
         await connection.query(search_query, async(err, result) => {
                 if (err) throw (err)
@@ -228,9 +228,9 @@ app.get('/profilemodifier', (req, res) => {
     db.getConnection(async(err, connection) => {
         if (err) throw (err)
         const sqlSearch = "SELECT * FROM userdb.users WHERE userid = ?;" // UserID alapján lekérünk mindent
-        const search_query = mysql.format(sqlSearch, [loggedInUserid])
+        const search_query = mysql.format(sqlSearch, [req.user])
         console.log("--------> Bejelentkezett user adatainak olvasása")
-        console.log("loggedInUserid: " + loggedInUserid)
+        console.log("loggedInUserid: " + req.user)
 
         await connection.query(search_query, async(err, result) => {
                 if (err) throw (err)
@@ -274,9 +274,9 @@ async(req, res) => {
         db.getConnection(async(err, connection) => {
             if (err) throw (err)
             const sqlSearch = "SELECT * FROM userdb.users WHERE userid = ?;" // UserID alapján lekérünk mindent
-            const search_query = mysql.format(sqlSearch, [loggedInUserid])
+            const search_query = mysql.format(sqlSearch, [req.user])
             console.log("--------> Bejelentkezett user adatainak olvasása")
-            console.log("loggedInUserid: " + loggedInUserid)
+            console.log("loggedInUserid: " + req.user)
     
             await connection.query(search_query, async(err, result) => {
                     if (err) throw (err)
@@ -322,7 +322,7 @@ async(req, res) => {
                 if (await bcrypt.compare(password, hashedPassword)) {
                     console.log("---------> Good password")
                     const sqlUpdate = "UPDATE users SET email=?, password=?, lastname=?, firstname=? WHERE userid = ?;"
-                    const update_query = mysql.format(sqlUpdate, [email, newhashedPassword, lastname, firstname, loggedInUserid])
+                    const update_query = mysql.format(sqlUpdate, [email, newhashedPassword, lastname, firstname, req.user])
                     await connection.query(update_query, async (err, result) => {
                         if (err) throw (err)
                         console.log("------> Data Updated")
@@ -335,9 +335,9 @@ async(req, res) => {
                     db.getConnection(async(err, connection) => {
                         if (err) throw (err)
                         const sqlSearch = "SELECT * FROM userdb.users WHERE userid = ?;" // UserID alapján lekérünk mindent
-                        const search_query = mysql.format(sqlSearch, [loggedInUserid])
+                        const search_query = mysql.format(sqlSearch, [req.user])
                         console.log("--------> Bejelentkezett user adatainak olvasása")
-                        console.log("loggedInUserid: " + loggedInUserid)
+                        console.log("loggedInUserid: " + req.user)
                 
                         await connection.query(search_query, async(err, result) => {
                                 if (err) throw (err)
@@ -485,13 +485,13 @@ app.post(
             }
         }) //end of app.post()
 
-passport.serializeUser(function(user_id, done) {
-    done(null, user_id);
+passport.serializeUser(function(loggedInUserid, done) {
+    done(null, loggedInUserid);
 });
 
-passport.deserializeUser(function(user_id, done) {
+passport.deserializeUser(function(loggedInUserid, done) {
     //User.findById(id, function (err, user) {
-    done(null, user_id);
+    done(null, loggedInUserid);
     //});
 });
 
