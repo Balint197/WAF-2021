@@ -28,7 +28,8 @@ ____________________________________________________
 TODO:
 
 * dőlt betűs rész (tesztek, UML, dok)
-* már létező felhasználó újra regisztráció esetén conflict hiba
+* már létező felhasználó újra regisztráció esetén ~~conflict hiba~~ redirect ok, de nem megy a flash (app.js 464)
+* kijelentkezve a gombok ne látszódjanak / redirect belépéshez
 * ~~megint rossz a tábla ha foglalunk~~
 * ~~adatbázis~~
 * ~~törlés~~

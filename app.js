@@ -460,7 +460,9 @@ app.post(
                                 if (result.length != 0) {
                                     connection.release()
                                     console.log("------> User already exists")
-                                    res.sendStatus(409)
+                                        //res.sendStatus(409)
+                                    req.flash('errorMessage', 'Felhasználó már létezik!') // nem működik
+                                    res.redirect('/register');
                                 } else {
                                     await connection.query(insert_query, (err, result) => {
                                         connection.release()
