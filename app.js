@@ -86,7 +86,7 @@ passport.use(new LocalStrategy(
                                 //res.send(`${username} is logged in!`)
                             } else {
                                 console.log("---------> Password Incorrect")
-                                //res.redirect('/login')
+                                    //res.redirect('/login')
                                 return done(null, false);
                                 //res.send("Password incorrect!")
                             } //end of bcrypt.compare()
@@ -124,7 +124,7 @@ app.get('/', (req, res) => {
     db.getConnection(async(err, connection) => { // csatéakozás a db-hez
         if (err) throw (err)
         if (req.isAuthenticated()) { // felhasználó  belépve
-            console.log("authenticated: " + loggedInUserid)
+            console.log("authenticated: " + req.user)
         } else {
             loggedInUserid = null
         }
@@ -192,98 +192,52 @@ app.get('/profile', authenticationMiddleware(), (req, res) => {
     // res.render('profile');
     // ide kell az adatbázis lekérdezés
     db.getConnection(async(err, connection) => {
-        if (err) throw (err)
-        const sqlSearch = "SELECT * FROM userdb.users WHERE userid = ?;" // UserID alapján lekérünk mindent
-        const search_query = mysql.format(sqlSearch, [req.user])
-        console.log("--------> Bejelentkezett user adatainak olvasása")
-        console.log("loggedInUserid: " + req.user)
-
-        await connection.query(search_query, async(err, result) => {
-                if (err) throw (err)
-                var username = result[0].username
-                var firstname = result[0].firstname
-                var lastname = result[0].lastname
-                var fullname = result[0].lastname+" "+result[0].firstname
-                var email = result[0].email
-                console.log("------> Kiolvasás kész")
-                console.log("fullname: " + fullname)
-                connection.release()
-                res.render('profile', {
-                    username: username,
-                    firstname: firstname,
-                    lastname: lastname, 
-                    fullname: fullname,
-                    email: email,
-                    modDone: req.flash('modDone')
-                });
-            }) //end of connection.query()
-    }) //end of db.getConnection()
-});
-
-app.post('/modifyreq', (req, res) => {
-    res.redirect('/profilemodifier'); }
-);
-
-app.get('/profilemodifier', (req, res) => {
-    db.getConnection(async(err, connection) => {
-        if (err) throw (err)
-        const sqlSearch = "SELECT * FROM userdb.users WHERE userid = ?;" // UserID alapján lekérünk mindent
-        const search_query = mysql.format(sqlSearch, [req.user])
-        console.log("--------> Bejelentkezett user adatainak olvasása")
-        console.log("loggedInUserid: " + req.user)
-
-        await connection.query(search_query, async(err, result) => {
-                if (err) throw (err)
-                var username = result[0].username
-                var firstname = result[0].firstname
-                var lastname = result[0].lastname
-                var fullname = result[0].lastname+" "+result[0].firstname
-                var email = result[0].email
-                console.log("------> Kiolvasás kész")
-                console.log("fullname: " + fullname)
-                connection.release()
-                res.render('profilemodifier', {
-                    username: username,
-                    firstname: firstname,
-                    lastname: lastname, 
-                    fullname: fullname,
-                    email: email,
-                    errMessage: null, 
-                    errors: null
-                });
-            }) //end of connection.query()
-    }) //end of db.getConnection()
-});
-
-app.post('/modify', 
-    body('modEmail', 'Érvénytelen email cím!').isEmail(),
-    body('modPassword', 'Jelszó túl rövid!').isLength({ min: 8 }),
-    body('modPassword', 'Jelszó túl hosszú!').isLength({ max: 50 }),
-    body('modPassword', 'A jelszónak tartalmaznia kell legalább egy számot és legalább egy kis- és nagybetűt!').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/),
-    body('passwordAgain').custom((value, { req }) => {
-    if (value !== req.body.modPassword) {
-        throw new Error('A két jelszó nem egyezik!');
-    }
-    // Indicates the success of this synchronous custom validator
-    return true;
-}),
-async(req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        console.log(errors)
-        db.getConnection(async(err, connection) => {
             if (err) throw (err)
             const sqlSearch = "SELECT * FROM userdb.users WHERE userid = ?;" // UserID alapján lekérünk mindent
             const search_query = mysql.format(sqlSearch, [req.user])
             console.log("--------> Bejelentkezett user adatainak olvasása")
             console.log("loggedInUserid: " + req.user)
-    
+
             await connection.query(search_query, async(err, result) => {
                     if (err) throw (err)
                     var username = result[0].username
                     var firstname = result[0].firstname
                     var lastname = result[0].lastname
-                    var fullname = result[0].lastname+" "+result[0].firstname
+                    var fullname = result[0].lastname + " " + result[0].firstname
+                    var email = result[0].email
+                    console.log("------> Kiolvasás kész")
+                    console.log("fullname: " + fullname)
+                    connection.release()
+                    res.render('profile', {
+                        username: username,
+                        firstname: firstname,
+                        lastname: lastname,
+                        fullname: fullname,
+                        email: email,
+                        modDone: req.flash('modDone')
+                    });
+                }) //end of connection.query()
+        }) //end of db.getConnection()
+});
+
+app.post('/modifyreq', (req, res) => {
+    res.redirect('/profilemodifier');
+});
+
+app.get('/profilemodifier', (req, res) => {
+    db.getConnection(async(err, connection) => {
+            if (err) throw (err)
+            const sqlSearch = "SELECT * FROM userdb.users WHERE userid = ?;" // UserID alapján lekérünk mindent
+            const search_query = mysql.format(sqlSearch, [req.user])
+            console.log("--------> Bejelentkezett user adatainak olvasása")
+            console.log("loggedInUserid: " + req.user)
+
+            await connection.query(search_query, async(err, result) => {
+                    if (err) throw (err)
+                    var username = result[0].username
+                    var firstname = result[0].firstname
+                    var lastname = result[0].lastname
+                    var fullname = result[0].lastname + " " + result[0].firstname
                     var email = result[0].email
                     console.log("------> Kiolvasás kész")
                     console.log("fullname: " + fullname)
@@ -291,60 +245,45 @@ async(req, res) => {
                     res.render('profilemodifier', {
                         username: username,
                         firstname: firstname,
-                        lastname: lastname, 
+                        lastname: lastname,
                         fullname: fullname,
-                        email: email, 
-                        errors: errors,
-                        errMessage: null
+                        email: email,
+                        errMessage: null,
+                        errors: null
                     });
                 }) //end of connection.query()
         }) //end of db.getConnection()
-    } else {
-        const user = req.body.modUser;
-        const password = req.body.oldPassword;
-        const newhashedPassword = await bcrypt.hash(req.body.modPassword, 10);
-        const email = req.body.modEmail;
-        const lastname = req.body.modLastName;
-        const firstname = req.body.modFirstName;
-        console.log("post received: %s", user)
+});
 
-        db.getConnection(async(err, connection) => {
-            if (err) throw (err)
-            const sqlSearch = "SELECT * FROM users WHERE username = ?"
-            const search_query = mysql.format(sqlSearch, [user])
-                
-            await connection.query(search_query, async(err, result) => {
-                //connection.release()
-
-                if (err) throw (err)
-                const hashedPassword = result[0].password
-                //get the hashedPassword from result
-                if (await bcrypt.compare(password, hashedPassword)) {
-                    console.log("---------> Good password")
-                    const sqlUpdate = "UPDATE users SET email=?, password=?, lastname=?, firstname=? WHERE userid = ?;"
-                    const update_query = mysql.format(sqlUpdate, [email, newhashedPassword, lastname, firstname, req.user])
-                    await connection.query(update_query, async (err, result) => {
-                        if (err) throw (err)
-                        console.log("------> Data Updated")
-                        req.flash('modDone','Sikeres módosítás!')
-                        res.redirect('/profile');
-                    })
-                } 
-                else {
-                    console.log("---------> Password Incorrect")
-                    db.getConnection(async(err, connection) => {
+app.post('/modify',
+        body('modEmail', 'Érvénytelen email cím!').isEmail(),
+        body('modPassword', 'Jelszó túl rövid!').isLength({ min: 8 }),
+        body('modPassword', 'Jelszó túl hosszú!').isLength({ max: 50 }),
+        body('modPassword', 'A jelszónak tartalmaznia kell legalább egy számot és legalább egy kis- és nagybetűt!').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/),
+        body('passwordAgain').custom((value, { req }) => {
+            if (value !== req.body.modPassword) {
+                throw new Error('A két jelszó nem egyezik!');
+            }
+            // Indicates the success of this synchronous custom validator
+            return true;
+        }),
+        async(req, res) => {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                console.log(errors)
+                db.getConnection(async(err, connection) => {
                         if (err) throw (err)
                         const sqlSearch = "SELECT * FROM userdb.users WHERE userid = ?;" // UserID alapján lekérünk mindent
                         const search_query = mysql.format(sqlSearch, [req.user])
                         console.log("--------> Bejelentkezett user adatainak olvasása")
                         console.log("loggedInUserid: " + req.user)
-                
+
                         await connection.query(search_query, async(err, result) => {
                                 if (err) throw (err)
                                 var username = result[0].username
                                 var firstname = result[0].firstname
                                 var lastname = result[0].lastname
-                                var fullname = result[0].lastname+" "+result[0].firstname
+                                var fullname = result[0].lastname + " " + result[0].firstname
                                 var email = result[0].email
                                 console.log("------> Kiolvasás kész")
                                 console.log("fullname: " + fullname)
@@ -352,28 +291,87 @@ async(req, res) => {
                                 res.render('profilemodifier', {
                                     username: username,
                                     firstname: firstname,
-                                    lastname: lastname, 
+                                    lastname: lastname,
                                     fullname: fullname,
                                     email: email,
-                                    errMessage: "Hibás jelszó!", 
-                                    errors: null
+                                    errors: errors,
+                                    errMessage: null
                                 });
                             }) //end of connection.query()
                     }) //end of db.getConnection()
-                } //end of bcrypt.compare()
-            }) //end of connection.query()
-        }) //end of db.getConnection()
-    }
-}) //end of app.post()
+            } else {
+                const user = req.body.modUser;
+                const password = req.body.oldPassword;
+                const newhashedPassword = await bcrypt.hash(req.body.modPassword, 10);
+                const email = req.body.modEmail;
+                const lastname = req.body.modLastName;
+                const firstname = req.body.modFirstName;
+                console.log("post received: %s", user)
+
+                db.getConnection(async(err, connection) => {
+                        if (err) throw (err)
+                        const sqlSearch = "SELECT * FROM users WHERE username = ?"
+                        const search_query = mysql.format(sqlSearch, [user])
+
+                        await connection.query(search_query, async(err, result) => {
+                                //connection.release()
+
+                                if (err) throw (err)
+                                const hashedPassword = result[0].password
+                                    //get the hashedPassword from result
+                                if (await bcrypt.compare(password, hashedPassword)) {
+                                    console.log("---------> Good password")
+                                    const sqlUpdate = "UPDATE users SET email=?, password=?, lastname=?, firstname=? WHERE userid = ?;"
+                                    const update_query = mysql.format(sqlUpdate, [email, newhashedPassword, lastname, firstname, req.user])
+                                    await connection.query(update_query, async(err, result) => {
+                                        if (err) throw (err)
+                                        console.log("------> Data Updated")
+                                        req.flash('modDone', 'Sikeres módosítás!')
+                                        res.redirect('/profile');
+                                    })
+                                } else {
+                                    console.log("---------> Password Incorrect")
+                                    db.getConnection(async(err, connection) => {
+                                            if (err) throw (err)
+                                            const sqlSearch = "SELECT * FROM userdb.users WHERE userid = ?;" // UserID alapján lekérünk mindent
+                                            const search_query = mysql.format(sqlSearch, [req.user])
+                                            console.log("--------> Bejelentkezett user adatainak olvasása")
+                                            console.log("loggedInUserid: " + req.user)
+
+                                            await connection.query(search_query, async(err, result) => {
+                                                    if (err) throw (err)
+                                                    var username = result[0].username
+                                                    var firstname = result[0].firstname
+                                                    var lastname = result[0].lastname
+                                                    var fullname = result[0].lastname + " " + result[0].firstname
+                                                    var email = result[0].email
+                                                    console.log("------> Kiolvasás kész")
+                                                    console.log("fullname: " + fullname)
+                                                    connection.release()
+                                                    res.render('profilemodifier', {
+                                                        username: username,
+                                                        firstname: firstname,
+                                                        lastname: lastname,
+                                                        fullname: fullname,
+                                                        email: email,
+                                                        errMessage: "Hibás jelszó!",
+                                                        errors: null
+                                                    });
+                                                }) //end of connection.query()
+                                        }) //end of db.getConnection()
+                                } //end of bcrypt.compare()
+                            }) //end of connection.query()
+                    }) //end of db.getConnection()
+            }
+        }) //end of app.post()
 
 
 
 app.get('/login', (req, res) => {
     //const failureFlash = req.flash('message')
-    res.render('login',  {
+    res.render('login', {
         failureFlash: req.flash('error')
-    }, console.log(req.flash('error'))
-    );
+    }, console.log(req.flash('error')));
 });
 
 
@@ -382,9 +380,7 @@ app.post('/login', passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: 'Hibás felhasználónév vagy jelszó!'
-}, 
-)
-);
+}, ));
 
 
 app.get('/logout', (req, res) => {

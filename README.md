@@ -27,19 +27,21 @@ ____________________________________________________
 
 TODO:
 
+* dőlt betűs rész (tesztek, UML, dok)
+* már létező felhasználó újra regisztráció esetén conflict hiba
+* ~~megint rossz a tábla ha foglalunk~~
 * ~~adatbázis~~
 * ~~törlés~~
 * ~~rossz jelszó login error (és belép)~~
 * ~~esetleg azt még kiírhatná az oldalra hogy rossz jelszó vagy felhasználónév, próbálkozz újra (flash-el)~~
-* regisztrációnál pattern (05 előadás, 31. oldal) (könnyű, csak most másik gépről vagyok...)
 * ~~regisztráció után egyből foglalás esetén error, de ha ki-belépünk akkor jó (nem fut le az autentikáció, így nincs meg a userid) -> jelenlegi megoldás: redirect to /logout, szóval be kell lépni (csúnya?)~~
 * ~~modal confirmation ... text kitöltés~~
-* dőlt betűs rész (tesztek, UML, dok)
 * ~~login után rá kell frissíteni a `/` oldalra, mert anélkül úgy látszódik a tábla, mintha kilépve lennénk~~
 
 HA UNATKOZUNK/ÖTLETEK:
 
-* profil oldalra áttenni/oda is berakni a lefoglalt időpontokat
+* regisztrációnál pattern (05 előadás, 31. oldal) (könnyű, csak most másik gépről vagyok...)
+* profil oldalra áttenni/oda is berakni a lefoglalt időpontokat, ha nem akkor törölni
 * flash ha lefoglalta az időpontot, és a db-ben is ok
 * (más által) foglalt cella alsó részén felhasználó kiírása, hogy cserélgetni lehessen
 * frontend szépítgetés
