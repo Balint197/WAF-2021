@@ -184,7 +184,8 @@ app.post("/torles", (req, res) => {
 
 app.get('/register', (req, res) => {
     res.render('register', {
-        errors: false
+        errors: false,
+        errorUser: req.flash('errorUser')
     });
 });
 
@@ -431,7 +432,8 @@ app.post(
             if (!errors.isEmpty()) {
                 console.log(errors)
                 res.render('register', {
-                    errors: errors
+                    errors: errors,
+                    errorUser: req.flash('errorUser')
                 });
             } else {
                 const user = req.body.username; //req.body.name;
@@ -461,7 +463,7 @@ app.post(
                                     connection.release()
                                     console.log("------> User already exists")
                                         //res.sendStatus(409)
-                                    req.flash('errorMessage', 'Felhasználó már létezik!') // nem működik
+                                    req.flash('errorUser', 'Felhasználó már létezik!') // nem működik
                                     res.redirect('/register');
                                 } else {
                                     await connection.query(insert_query, (err, result) => {
