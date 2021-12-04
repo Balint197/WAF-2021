@@ -39,7 +39,9 @@
                                                     <% } else if (timetabledata[cellID].userid == null) {%>
                                                         <td class="table-success">szabad
                                                             <span data-bs-whatever="<%=cellID%>" data-bs-toggle="modal" data-bs-target="#foglaloModal">
+                                                                <% if (loggedInUserid != null) {%> 
                                     <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Foglalás">+</button>
+                                    <% } %> 
                                 </span>
                                                         </td>
                                                         <% } else {%>
