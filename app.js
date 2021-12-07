@@ -114,8 +114,10 @@ function authenticationMiddleware() {
 // SZERVER BEÁLLÍTÁS
 const port = 3000;
 app.listen(port, () => {
-    console.log(`Serving on port ${port}`);
+    console.log(`✅ Szerver fut a ${port}-es porton!`);
 });
+
+
 
 // GET ÉS POST REQUESTEK
 app.get('/', (req, res) => {
@@ -401,9 +403,12 @@ const db = mysql.createPool({
 })
 
 db.getConnection((err, connection) => {
-    if (err) throw (err)
-    console.log("DB connected successful: " + connection.threadId)
-        // @ ide kéne a db teszt?
+    if (err) {
+        throw (err)
+        console.log('❌ Hiba az adatbázisban!')
+    } else {
+        console.log("✅ Adatbázis működik - threadId: " + connection.threadId)
+    }
 })
 
 
@@ -494,38 +499,3 @@ passport.deserializeUser(function(loggedInUserid, done) {
     done(null, loggedInUserid);
     //});
 });
-
-//LOGIN (AUTHENTICATE USER)  előző megoldás
-
-/*
-app.post("/login", (req, res) => {
-    const user = req.body.username;
-    const password = req.body.password;
-    db.getConnection(async (err, connection) => {
-        if (err) throw (err)
-        const sqlSearch = "SELECT * FROM users WHERE username = ?"
-        const search_query = mysql.format(sqlSearch, [user])
-        await connection.query(search_query, async (err, result) => {
-            connection.release()
-
-            if (err) throw (err)
-            if (result.length == 0) {
-                console.log("--------> User does not exist")
-                res.sendStatus(404)
-            }
-            else {
-                const hashedPassword = result[0].password
-                //get the hashedPassword from result
-                if (await bcrypt.compare(password, hashedPassword)) {
-                    console.log("---------> Login Successful")
-                    res.send(`${user} is logged in!`)
-                }
-                else {
-                    console.log("---------> Password Incorrect")
-                    res.send("Password incorrect!")
-                } //end of bcrypt.compare()
-            }//end of User exists i.e. results.length==0
-        }) //end of connection.query()
-    }) //end of db.connection()
-}) //end of app.post()
-*/
