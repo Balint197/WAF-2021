@@ -37,7 +37,7 @@
                         </span>
                                                     </td>
                                                     <% } else if (timetabledata[cellID].userid == null) {%>
-                                                        <td class="table-success">szabad
+                                                        <td class="table-success">szabad  
                                                             <span data-bs-whatever="<%=cellID%>" data-bs-toggle="modal" data-bs-target="#foglaloModal">
                                                                 <% if (loggedInUserid != null) {%> 
                                     <button type="button" class="ms-2 btn btn-sm btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="right" title="Foglalás">+</button>
@@ -45,16 +45,22 @@
                                 </span>
                                                         </td>
                                                         <% } else {%>
-                                                            <td class="table-danger">foglalt</td>
+                                                            <td
+                                                            <%holder=timetabledata[cellID].userid-1%>
+                                                            class="table-danger">foglalt  <br> 
+                                                            <div style="color:grey; font-weight: bold"><%=userdata[holder].lastname%> <%=userdata[holder].firstname %> </div>
+                                                            <div style="color:grey; ">nevű felhasználó által </div>
+                                                            </td> 
                                                             <% } %>
-                                                                <% } %>
-                                                                    <% } %>
+                                                            <% } %>
+                                                            <% } %>
+                                                               
                             </tr>
                     </tbody>
                 </table>
 
                 <h3 id="use">A weboldal használata</h3>
-                <p>Az időpontfoglaló webes alkalmazás használata regisztrációhoz kötött, de az elérhető üres időpontok bejelentkezés nélkül is megtekinthetők. A fejlécen található regisztrációs gombon keresztül elérhető a regisztrálás, ahol megadott feltételeknek
+                <p style="text-align: justify">Az időpontfoglaló webes alkalmazás használata regisztrációhoz kötött, de az elérhető üres időpontok bejelentkezés nélkül is megtekinthetők. A fejlécen található regisztrációs gombon keresztül elérhető a regisztrálás, ahol megadott feltételeknek
                     megfelelő személyes adatok megadása esetén sikeresen létrehozhatjuk profilunkat. Bejelentkezést követően módunkban áll a szabadnak (más által nem foglalt) jelzett időpontok lefoglalására a cellában levő "+" gomb segítségével. Az általunk
                     már korábban lefoglalt időpontok lemondására lehetőségünk van az így jelzett cellák melletti "X" gombbal. Mindkét esetben egy megerősítő ablak bukkan fel, ahol ellenőrizhetjük, hogy valóban jó helyre kattintottunk. Ebben az ablakban
                     a "mégse" gombra, vagy az ablak tetején levő "X"-re kattintva lehetőség nyílik visszalépni, és a színes megerősítő gombbal véglegesíthetjük a választást. Mivel más felhasználók által lefoglalt időpontokhoz nincs hozzáférésünk, ezért

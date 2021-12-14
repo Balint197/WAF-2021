@@ -130,12 +130,19 @@ app.get('/', (req, res) => {
         } else {
             loggedInUserid = null
         }
+        userdata = null
+        const sqlSearchUser = "SELECT * FROM userdb.users" // SQL query string
+        await connection.query(sqlSearchUser, async(err, result) => { // SQL string parancs futtatása a db-ben
+            userdata = result // lekérdezés eredménye tárolva
+            console.log(userdata)
+        })
         const sqlSearch = "SELECT * FROM userdb.timetable  ORDER BY idtimetable" // SQL query string
         await connection.query(sqlSearch, async(err, result) => { // SQL string parancs futtatása a db-ben
             connection.release() // db kapcsolat bontása
             const timetabledata = result // lekérdezés eredménye tárolva
+            console.log(timetabledata)
             console.log("loggedInUserid: " + loggedInUserid)
-            res.render('home', { timetabledata: timetabledata, loggedInUserid: loggedInUserid }); // átirányítás, a lekérdezett adatok és userid továbbításával
+            res.render('home', { userdata: userdata, timetabledata: timetabledata, loggedInUserid: loggedInUserid }); // átirányítás, a lekérdezett adatok és userid továbbításával
         })
     })
 
@@ -385,6 +392,12 @@ app.post('/login', passport.authenticate('local', {
     failureFlash: 'Hibás felhasználónév vagy jelszó!'
 }, ));
 
+
+
+
+app.get('/eszkozok', (req, res) => {
+    res.render('eszkozok');
+});
 
 app.get('/logout', (req, res) => {
     req.logout();

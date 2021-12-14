@@ -43,11 +43,14 @@
                     <img src="https://images.unsplash.com/photo-1562568068-ea24dcbf3c78?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1174&q=80" alt="" class="card-img-top" />
                     <div class="card-body">
                         <h3 class="card-title mb-2">Regisztráció</h3>
-                        <form action="/register" method="POST" class="validated-form" novalidate>
+                        <form action="/register" method="POST" class="validated-form needs-validation" novalidate>
 
                             <div class="form-floating mb-3">
                                 <input type="username" name="username" id="username" class="form-control" placeholder="username" required>
                                 <label for="username">Felhasználónév</label>
+                                <div class="valid-tooltip">
+                                    Please choose a unique and valid username.
+                                </div>
                             </div>
 
                             <div class="form-floating mb-3">
